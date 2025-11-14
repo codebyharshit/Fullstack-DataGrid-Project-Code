@@ -64,6 +64,16 @@ export const electricCarsAPI = {
       throw error;
     }
   },
+
+  // Export to CSV
+  exportToCSV: () => {
+    window.open(`${API_BASE_URL}/electric-cars/export/csv`, '_blank');
+  },
+
+  // Export to Excel
+  exportToExcel: () => {
+    window.open(`${API_BASE_URL}/electric-cars/export/excel`, '_blank');
+  },
 };
 
 export default api;

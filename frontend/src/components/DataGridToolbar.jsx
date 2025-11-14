@@ -19,7 +19,9 @@ import {
   Clear as ClearIcon,
   Add as AddIcon,
   Delete as DeleteIcon,
+  FileDownload as FileDownloadIcon,
 } from '@mui/icons-material';
+import { electricCarsAPI } from '../services/api';
 
 const DataGridToolbar = ({ onSearch, onFilter, onClear }) => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -101,6 +103,14 @@ const DataGridToolbar = ({ onSearch, onFilter, onClear }) => {
     onClear();
   };
 
+  const handleExportCSV = () => {
+    electricCarsAPI.exportToCSV();
+  };
+
+  const handleExportExcel = () => {
+    electricCarsAPI.exportToExcel();
+  };
+
   return (
     <Paper elevation={2} sx={{ p: { xs: 1.5, sm: 2 }, mb: 2, borderRadius: 2 }}>
       <Grid container spacing={2} alignItems="center">
@@ -161,6 +171,28 @@ const DataGridToolbar = ({ onSearch, onFilter, onClear }) => {
           </Box>
         </Grid>
       </Grid>
+
+      {/* Export Buttons Row */}
+      <Box sx={{ mt: 2, display: 'flex', gap: 1, justifyContent: 'flex-end' }}>
+        <Button
+          variant="outlined"
+          color="success"
+          startIcon={<FileDownloadIcon />}
+          onClick={handleExportCSV}
+          size="small"
+        >
+          Export CSV
+        </Button>
+        <Button
+          variant="outlined"
+          color="success"
+          startIcon={<FileDownloadIcon />}
+          onClick={handleExportExcel}
+          size="small"
+        >
+          Export Excel
+        </Button>
+      </Box>
 
       <Collapse in={showFilters}>
         <Box sx={{ mt: 2 }}>
